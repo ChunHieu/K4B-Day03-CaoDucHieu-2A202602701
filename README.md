@@ -128,3 +128,14 @@ Học viên làm bài lần lượt theo đúng luồng 3 bước tinh giản d�
 | **2. ReAct Loop & MCP Integration** | **35%** | Vòng lặp ReAct chạy mượt mà qua Native Tool Calling & MCP Server **trên LLM API thật (Gemini/OpenAI)**. | Code trong `src/mcp_server.py` + `src/tools.py` + `src/app.py` + Log API thật. |
 | **3. Waterfall Trace & Observation** | **25%** | File log `trace_waterfall.json` trích xuất đầy đủ chuỗi suy luận Thought $\rightarrow$ Action $\rightarrow$ Observation. | File log `docs/trace_waterfall.json` + `docs/trace_eval.md`. |
 | **4. Git Repository & Submission** | **15%** | Cấu trúc Repo sạch sẽ, commit chuẩn chỉ và nộp đúng hạn trên LMS VLearn. | Link Repo GitHub cá nhân. |
+
+
+## Web thử nghiệm hai thành phố
+
+Chạy `python src/web_app.py`, mở http://127.0.0.1:8000 và chọn Hà Nội hoặc TP. Hồ Chí Minh.
+Hà Nội có E01–E03; TP.HCM hiện có D4. Dữ liệu là bản lưu nguồn VinBus trong
+`config/hanoi_routes.json` và `config/hcm_routes.json`, chỉ gồm địa điểm chính.
+Máy chủ giới hạn công cụ theo thành phố đã chọn. Web nhớ hội thoại trong phiên để bổ sung thông tin đăng ký. Phiên tối đa 20 lượt, lưu trong bộ nhớ máy chủ. Tải lại trang, đổi thành phố hoặc nhấn Cuộc trò chuyện mới để bắt đầu lại.
+Vé tháng D4 chưa xác minh nên chưa hỗ trợ đăng ký. Đăng ký Hà Nội vẫn mô phỏng.
+Đổi thành phố sẽ xóa kết quả hiển thị, không hủy đăng ký đã tạo trong bộ nhớ.
+Khởi động lại máy chủ sau khi cập nhật mã nguồn hoặc dữ liệu.

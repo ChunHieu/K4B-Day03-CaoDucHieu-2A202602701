@@ -1,0 +1,12 @@
+{
+  "source_url": "https://vinbus.vn/gioi-thieu/mang-luoi-tuyen",
+  "fare_source_url": "https://www.vinbus.vn/thong-bao-quan-trong-thuc-hien-dieu-chinh-gia-ve-xe-buyt-tai-ha-noi-tu-ngay-01-11-2024",
+  "accessed_on": "2026-09-13",
+  "fare_effective_from": "2024-11-01",
+  "data_note": "Bản lưu thông tin từ nguồn chính thức, không cập nhật trực tiếp. Chỉ gồm địa điểm chính theo chiều liệt kê, không phải danh sách đầy đủ điểm dừng. Giá là vé tháng một tuyến cho khách phổ thông theo thông báo nguồn, không bảo đảm cho mọi thời điểm tương lai; không gồm phí cấp thẻ.",
+  "routes": [
+    {"route_id": "E01", "route_name": "BX Mỹ Đình - Ngã Tư Sở - KĐT Ocean Park", "waypoints": ["BX Mỹ Đình", "Ngã Tư Sở", "KĐT Ocean Park"], "monthly_pass_price_vnd": 140000},
+    {"route_id": "E02", "route_name": "Hào Nam - Long Biên - KĐT Ocean Park", "waypoints": ["Hào Nam", "Long Biên", "KĐT Ocean Park"], "monthly_pass_price_vnd": 140000},
+    {"route_id": "E03", "route_name": "Mỹ Đình (Hàm Nghi) - Thái Hà - KĐT Ocean Park", "waypoints": ["Mỹ Đình (Hàm Nghi)", "Thái Hà", "KĐT Ocean Park"], "monthly_pass_price_vnd": 140000}
+  ]
+}

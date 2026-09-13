@@ -1,0 +1,8 @@
+{
+  "source_url": "https://www.vinbus.vn/vi/tp-hcm-vinbus-mien-ve-tuyen-d4-33-150-nhan-dip-le-tet-duong-lich-va-tet-nguyen-dan-2026",
+  "accessed_on": "2026-09-13",
+  "data_note": "Bản lưu từ nguồn VinBus, chỉ có hai đầu tuyến, không phải toàn bộ trạm dừng. Không áp dụng ưu đãi miễn vé dịp Tết cho thời điểm khác. Chưa xác minh chính sách vé tháng; ứng dụng chưa hỗ trợ đăng ký vé tháng tuyến này.",
+  "routes": [
+    {"route_id": "D4", "route_name": "Vinhomes Grand Park - Bến xe buýt Sài Gòn", "waypoints": ["Vinhomes Grand Park", "Bến xe buýt Sài Gòn"], "monthly_pass_price_vnd": null}
+  ]
+}

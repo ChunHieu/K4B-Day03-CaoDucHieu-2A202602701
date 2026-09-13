@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC01",
+    "type": "direct_query",
+    "question": "Chào bạn, bạn có thể giúp tôi những gì?",
+    "expected_behavior": "Agent giới thiệu chức năng tra cứu tuyến xe và đăng ký vé tháng, không gọi công cụ.",
+    "complexity": "Low"
+  },
+  {
+    "id": "TC02",
+    "type": "single_tool_query",
+    "question": "Hãy tra cứu lộ trình và giá vé tháng của tuyến E01.",
+    "expected_behavior": "Agent gọi lookup_bus_route với route_id E01. Trả lời các địa điểm chính BX Mỹ Đình, Ngã Tư Sở, KĐT Ocean Park và giá vé tháng 140000 đồng; nêu nguồn, ngày truy cập và giới hạn bản lưu.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC03",
+    "type": "monthly_pass_registration",
+    "question": "Đăng ký vé tháng 2026-10 cho tuyến E01. Tên hành khách là Khách Thử Nghiệm, số điện thoại 0900000000.",
+    "expected_behavior": "Agent gọi register_monthly_pass với passenger_name Khách Thử Nghiệm, phone 0900000000, route_id E01 và month 2026-10. Trả về mã đăng ký từ công cụ và thông báo đây là đăng ký mô phỏng, không khẳng định đã thanh toán.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC04",
+    "type": "multi_step_reasoning",
+    "question": "Tìm tuyến đi từ Hào Nam đến KĐT Ocean Park rồi đăng ký vé tháng 2026-10 cho tôi trên tuyến tìm được. Tên hành khách là Khách Kiểm Thử, số điện thoại 0900000001.",
+    "expected_behavior": "Agent gọi lookup_bus_route với origin Hào Nam và destination KĐT Ocean Park trước. Từ kết quả, lấy route_id E02 rồi gọi register_monthly_pass với thông tin hành khách đã cung cấp và month 2026-10. Cuối cùng trả mã đăng ký, tuyến E02 và giá vé 140000 đồng từ công cụ; nêu rõ đăng ký mô phỏng.",
+    "complexity": "High"
+  },
+  {
+    "id": "TC05",
+    "type": "edge_case_handling",
+    "question": "Hãy tra cứu lộ trình tuyến UNKNOWN.",
+    "expected_behavior": "Agent gọi lookup_bus_route với route_id UNKNOWN, nhận trạng thái NOT_FOUND và thông báo không tìm thấy tuyến trong bản lưu Hà Nội. Không bịa lộ trình và không gọi công cụ đăng ký.",
+    "complexity": "Medium"
+  }
+]

@@ -1,29 +1,185 @@
 [
   {
     "step": 1,
-    "query": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
+    "query": "Chào bạn, bạn có thể giúp tôi những gì?",
     "action_type": "FINAL_ANSWER",
-    "thought": "Câu hỏi chung về quy chế học vụ, trả lời trực tiếp không cần gọi Tool.",
-    "output": "[Mock Agent Response]: Xin chào! Quy chế học vụ VinUni yêu cầu sinh viên tích lũy tối thiểu 120 tín chỉ và duy trì GPA trên 2.0 để tốt nghiệp.",
-    "latency_ms": 2845.93
+    "output": "Chào bạn! Tôi có thể giúp bạn tra cứu lộ trình tuyến xe VinBus hoặc hỗ trợ đăng ký vé tháng. Bạn cần thông tin gì?",
+    "latency_ms": 3242.45,
+    "test_case_id": "TC01"
   },
   {
     "step": 1,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu lộ trình và giá vé tháng của tuyến DEMO01.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "decision_summary": "LLM yêu cầu gọi công cụ lookup_bus_route.",
+    "tool_name": "lookup_bus_route",
     "arguments": {
-      "student_id": "SV2026001"
+      "route_id": "DEMO01"
     },
-    "observation": {},
-    "latency_ms": 799.12
+    "observation": {
+      "status": "SUCCESS",
+      "simulation": true,
+      "count": 1,
+      "routes": [
+        {
+          "route_id": "DEMO01",
+          "route_name": "Tuyến mô phỏng Đại học – Công viên",
+          "stops": [
+            "Đại học A",
+            "Khu dân cư B",
+            "Công viên C"
+          ],
+          "monthly_pass_price_vnd": 150000
+        }
+      ],
+      "requires_selection": false
+    },
+    "llm_latency_ms": 1511.67,
+    "tool_latency_ms": 0.05,
+    "latency_ms": 1511.72,
+    "test_case_id": "TC02"
   },
   {
     "step": 2,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu lộ trình và giá vé tháng của tuyến DEMO01.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Chưa thể trả lời chi tiết do chưa nhận được dữ liệu từ MCP Server (hãy hoàn thành TODO 2.1).",
-    "latency_ms": 10.0
+    "output": "Lộ trình của tuyến DEMO01 (Tuyến mô phỏng Đại học – Công viên) bao gồm các điểm dừng sau:\n\n- Đại học A\n- Khu dân cư B\n- Công viên C\n\nGiá vé tháng cho tuyến này là 150.000 VNĐ.\n\nNếu bạn cần thêm thông tin hoặc muốn đăng ký vé tháng, hãy cho tôi biết!",
+    "latency_ms": 1667.99,
+    "test_case_id": "TC02"
+  },
+  {
+    "step": 1,
+    "query": "Đăng ký vé tháng 2026-10 cho tuyến DEMO01. Tên hành khách là Khách Thử Nghiệm, số điện thoại 0900000000.",
+    "action_type": "TOOL_EXECUTION",
+    "decision_summary": "LLM yêu cầu gọi công cụ register_monthly_pass.",
+    "tool_name": "register_monthly_pass",
+    "arguments": {
+      "passenger_name": "Khách Thử Nghiệm",
+      "phone": "0900000000",
+      "route_id": "DEMO01",
+      "month": "2026-10"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "simulation": true,
+      "registration": {
+        "registration_id": "VB-DEMO-789185AF7E",
+        "passenger_name": "Khách Thử Nghiệm",
+        "phone": "0900000000",
+        "route_id": "DEMO01",
+        "month": "2026-10",
+        "price_vnd": 150000
+      },
+      "message": "Đăng ký vé tháng mô phỏng thành công. Đây không phải vé thật."
+    },
+    "llm_latency_ms": 1052.96,
+    "tool_latency_ms": 0.21,
+    "latency_ms": 1053.17,
+    "test_case_id": "TC03"
+  },
+  {
+    "step": 2,
+    "query": "Đăng ký vé tháng 2026-10 cho tuyến DEMO01. Tên hành khách là Khách Thử Nghiệm, số điện thoại 0900000000.",
+    "action_type": "FINAL_ANSWER",
+    "output": "Bạn đã đăng ký vé tháng mô phỏng thành công cho tuyến DEMO01 với thông tin như sau:\n\n- Mã đăng ký: VB-DEMO-789185AF7E\n- Họ tên hành khách: Khách Thử Nghiệm\n- Số điện thoại: 0900000000\n- Tháng sử dụng vé: 2026-10\n- Giá vé: 150.000 VND\n\nXin lưu ý đây không phải là vé thật. Cảm ơn bạn đã sử dụng dịch vụ! Nếu cần thêm hỗ trợ, vui lòng cho tôi biết.",
+    "latency_ms": 1461.63,
+    "test_case_id": "TC03"
+  },
+  {
+    "step": 1,
+    "query": "Tìm tuyến đi từ Bến xe D đến Bệnh viện F rồi đăng ký vé tháng 2026-10 cho tôi trên tuyến tìm được. Tên hành khách là Khách Kiểm Thử, số điện thoại 0900000001.",
+    "action_type": "TOOL_EXECUTION",
+    "decision_summary": "LLM yêu cầu gọi công cụ lookup_bus_route.",
+    "tool_name": "lookup_bus_route",
+    "arguments": {
+      "origin": "Bến xe D",
+      "destination": "Bệnh viện F"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "simulation": true,
+      "count": 1,
+      "routes": [
+        {
+          "route_id": "DEMO02",
+          "route_name": "Tuyến mô phỏng Bến xe – Bệnh viện",
+          "stops": [
+            "Bến xe D",
+            "Trung tâm E",
+            "Bệnh viện F"
+          ],
+          "monthly_pass_price_vnd": 180000
+        }
+      ],
+      "requires_selection": false
+    },
+    "llm_latency_ms": 1058.83,
+    "tool_latency_ms": 0.14,
+    "latency_ms": 1058.97,
+    "test_case_id": "TC04"
+  },
+  {
+    "step": 2,
+    "query": "Tìm tuyến đi từ Bến xe D đến Bệnh viện F rồi đăng ký vé tháng 2026-10 cho tôi trên tuyến tìm được. Tên hành khách là Khách Kiểm Thử, số điện thoại 0900000001.",
+    "action_type": "TOOL_EXECUTION",
+    "decision_summary": "LLM yêu cầu gọi công cụ register_monthly_pass.",
+    "tool_name": "register_monthly_pass",
+    "arguments": {
+      "passenger_name": "Khách Kiểm Thử",
+      "phone": "0900000001",
+      "route_id": "DEMO02",
+      "month": "2026-10"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "simulation": true,
+      "registration": {
+        "registration_id": "VB-DEMO-BA2779D495",
+        "passenger_name": "Khách Kiểm Thử",
+        "phone": "0900000001",
+        "route_id": "DEMO02",
+        "month": "2026-10",
+        "price_vnd": 180000
+      },
+      "message": "Đăng ký vé tháng mô phỏng thành công. Đây không phải vé thật."
+    },
+    "llm_latency_ms": 1171.51,
+    "tool_latency_ms": 0.06,
+    "latency_ms": 1171.57,
+    "test_case_id": "TC04"
+  },
+  {
+    "step": 3,
+    "query": "Tìm tuyến đi từ Bến xe D đến Bệnh viện F rồi đăng ký vé tháng 2026-10 cho tôi trên tuyến tìm được. Tên hành khách là Khách Kiểm Thử, số điện thoại 0900000001.",
+    "action_type": "FINAL_ANSWER",
+    "output": "Bạn đã đăng ký vé tháng mô phỏng thành công trên tuyến xe với thông tin như sau:\n\n- **Mã đăng ký:** VB-DEMO-BA2779D495\n- **Tuyến:** DEMO02 - Tuyến mô phỏng Bến xe – Bệnh viện\n- **Tháng sử dụng:** 2026-10\n- **Giá vé:** 180,000 VNĐ\n\nXin lưu ý rằng đây không phải là vé thật. Nếu bạn cần thêm thông tin gì khác, hãy cho tôi biết!",
+    "latency_ms": 1895.89,
+    "test_case_id": "TC04"
+  },
+  {
+    "step": 1,
+    "query": "Hãy tra cứu lộ trình tuyến UNKNOWN.",
+    "action_type": "TOOL_EXECUTION",
+    "decision_summary": "LLM yêu cầu gọi công cụ lookup_bus_route.",
+    "tool_name": "lookup_bus_route",
+    "arguments": {
+      "route_id": "UNKNOWN"
+    },
+    "observation": {
+      "status": "NOT_FOUND",
+      "message": "Không tìm thấy tuyến trong dữ liệu mô phỏng."
+    },
+    "llm_latency_ms": 1379.17,
+    "tool_latency_ms": 0.04,
+    "latency_ms": 1379.21,
+    "test_case_id": "TC05"
+  },
+  {
+    "step": 2,
+    "query": "Hãy tra cứu lộ trình tuyến UNKNOWN.",
+    "action_type": "FINAL_ANSWER",
+    "output": "Xin lỗi, tôi không tìm thấy tuyến xe với mã \"UNKNOWN\" trong dữ liệu mô phỏng. Bạn có thể cung cấp mã tuyến khác hoặc cho biết điểm đi và điểm đến để tôi có thể giúp bạn tra cứu lộ trình?",
+    "latency_ms": 1644.63,
+    "test_case_id": "TC05"
   }
 ]
